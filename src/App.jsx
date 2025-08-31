@@ -1,24 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
-import LandingPage from "./pages/LandingPage";
-import Login from "./pages/Login";
-import "./App.css"
-import EmployeeDashboard from "./pages/dashboards/EmployeeDashboard";
-import AdminDashboard from "./pages/dashboards/AdminDashboard";
-import SuperAdminDashboard from "./pages/dashboards/SuperAdminDashboard";
-import ClientDashboard from "./pages/dashboards/ClientDashboard";
-import ProtectedRoute from "./components/ProtectedRoute";
-import Navbar from "./components/Navbar";
-import Notifications from './pages/superadmin/Notifications';
-import Users from './pages/superadmin/Users';
-import Departments from './pages/superadmin/Departments';
-import Tasks from './pages/superadmin/Tasks';
-import Projects from './pages/superadmin/Projects';
-import Payments from './pages/superadmin/Payments';
-import Attendance from './pages/superadmin/Attendance';
-import LeaveRequests from './pages/superadmin/LeaveRequests';
-import Chat from './pages/superadmin/Chat';
-import Reports from './pages/superadmin/Reports';
-import GroupChat from './pages/superadmin/GroupChat';
+
 
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -34,7 +14,7 @@ import Navbar from "./components/Navbar";
 import Notifications from './pages/superadmin/Notifications';
 import Users from './pages/superadmin/Users';
 import Departments from './pages/superadmin/Departments';
-import Tasks from './pages/superadmin/Tasks';
+
 import Projects from './pages/superadmin/Projects';
 import Payments from './pages/superadmin/Payments';
 import Attendance from './pages/superadmin/Attendance';
