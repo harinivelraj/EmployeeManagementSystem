@@ -5,9 +5,7 @@ html, body, #root {
 
   min-height: 100vh;
   background-color: #fff;
-  background-image: url('../logo.png');
-  background-repeat: repeat;
-  background-size: 80px 80px;
+  /* Removed background-image and repeat to prevent logo tiling */
 }
 
 body, #root, html {
