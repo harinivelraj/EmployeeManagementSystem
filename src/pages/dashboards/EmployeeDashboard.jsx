@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import PrivateChat from "../../components/PrivateChat";
 import DeptGroupChat from "../../components/DeptGroupChat";
-import {io} from "socket.io-client";
+import { io } from "socket.io-client";
 import DepartmentSelection from "../../components/DepartmentSelection";
 
 axios.defaults.baseURL = "http://localhost:5000";
@@ -23,14 +23,7 @@ export default function EmployeeDashboard() {
   const [leaveRequests, setLeaveRequests] = useState([]);
   const [tasks, setTasks] = useState([]);
   const [notifications, setNotifications] = useState([]);
-<<<<<<< HEAD
   const [projects, setProjects] = useState([]);
-=======
-<<<<<<< HEAD
-  const [projects, setProjects] = useState([]);
-=======
->>>>>>> d3d77a7581ca8f69f49219777c1d6dc1b188395e
->>>>>>> 3f014bd22e10e37ea0a98bd114216001af0af8e7
   const authHeaders = { headers: { Authorization: `Bearer ${token}` } };
 
   // ✅ Leave request states
@@ -46,7 +39,7 @@ export default function EmployeeDashboard() {
   // This state holds the id of the employee selected for chatting
   const [selectedReceiver, setSelectedReceiver] = useState(null);
 
-    const fetchEmployees = async () => {
+  const fetchEmployees = async () => {
     try {
       const res = await axios.get("/api/employees", authHeaders);
       setEmployees(res.data);
@@ -117,10 +110,10 @@ export default function EmployeeDashboard() {
     }
   };
 
-const handleLogout = async () => {
-  localStorage.clear(); // clear all data
-  navigate("/login");   // redirect
-};
+  const handleLogout = () => {
+    localStorage.clear(); // clear all data
+    navigate("/login");   // redirect
+  };
 
   // ✅ Submit leave request
   const submitLeaveRequest = async () => {
@@ -231,10 +224,6 @@ const handleLogout = async () => {
     };
   }, [currentUserId]);
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 3f014bd22e10e37ea0a98bd114216001af0af8e7
   const fetchMyProjects = async () => {
     try {
       const res = await axios.get('/api/projects/my', authHeaders);
@@ -259,32 +248,10 @@ const handleLogout = async () => {
 
   return (
     <div className="dashboard-container full-screen">
-<<<<<<< HEAD
-=======
-=======
-  return (
-    <div
-      className="center-container"
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        minHeight: "100vh",
-        gap: "1rem",
-        overflowY: "auto",
-      }}
-    >
->>>>>>> d3d77a7581ca8f69f49219777c1d6dc1b188395e
->>>>>>> 3f014bd22e10e37ea0a98bd114216001af0af8e7
       <h1>Employee Dashboard</h1>
       <h2>Hello, {name}</h2>
 
       {/* Notifications Panel */}
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 3f014bd22e10e37ea0a98bd114216001af0af8e7
       <div className="dashboard-card">
         <h3 className="panel-header">Notifications</h3>
         {notifications.length === 0 ? (
@@ -293,282 +260,37 @@ const handleLogout = async () => {
           <ul className="list">
             {notifications.map((notif) => (
               <li key={notif.id} className="list-item">
-<<<<<<< HEAD
-=======
-=======
-      <div style={{ marginTop: "1rem", padding: "1rem", border: "1px solid #ccc", borderRadius: "8px", width: "300px" }}>
-        <h3>Notifications</h3>
-        {notifications.length === 0 ? (
-          <p>No notifications.</p>
-        ) : (
-          <ul style={{ listStyle: "none", padding: 0 }}>
-            {notifications.map((notif) => (
-              <li
-                key={notif.id}
-                style={{ marginBottom: "0.5rem", borderBottom: "1px solid #eee", paddingBottom: "0.5rem", cursor: "pointer" }}
-                onClick={() => {
-                  // If notification indicates a new chat message, open that conversation.
-                  if (notif.message.includes("sent you a new message")) {
-                    // Extract sender name from message. Assumes format: "John Doe sent you a new message."
-                    const senderName = notif.message.split(" sent you a new message")[0];
-                    // Try to find that employee from the list (skip if not found)
-                    const emp = employees.find((e) => e.name === senderName);
-                    if (emp) {
-                      setSelectedReceiver(emp);
-                    }
-                  }
-                }}
-              >
->>>>>>> d3d77a7581ca8f69f49219777c1d6dc1b188395e
->>>>>>> 3f014bd22e10e37ea0a98bd114216001af0af8e7
-                <p>{notif.message}</p>
-                <small>{new Date(notif.created_at).toLocaleString()}</small>
-                <div style={{ marginTop: "0.5rem" }}>
-                  {!notif.is_read && (
-                    <button onClick={(e) => { e.stopPropagation(); markAsRead(notif.id); }} style={{ marginRight: "0.5rem" }}>
-                      Mark as Read
-                    </button>
-                  )}
-                  <button onClick={(e) => { e.stopPropagation(); deleteNotification(notif.id); }}>
-                    Delete
-                  </button>
-                </div>
+                {notif.message}
+                <button onClick={() => markAsRead(notif.id)}>Mark as Read</button>
+                <button onClick={() => deleteNotification(notif.id)}>Delete</button>
               </li>
             ))}
           </ul>
         )}
       </div>
 
-      {/* ✅ Attendance buttons */}
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 3f014bd22e10e37ea0a98bd114216001af0af8e7
-      <div className="button-group">
-        <button className="action-button" onClick={checkIn} disabled={status !== "idle"}>
-          Check-In
-        </button>
-        <button className="action-button" onClick={checkOut} disabled={status !== "checkedIn"}>
-          Check-Out
-        </button>
-        <button className="action-button" onClick={() => navigate("/employee-dashboard")}>Dashboard</button>
-        <button className="action-button" onClick={handleLogout}>Logout</button>
-<<<<<<< HEAD
-=======
-=======
-      <div className="button-group" style={{ display: "flex", gap: "1rem" }}>
-        <button onClick={checkIn} disabled={status !== "idle"}>
-          Check-In
-        </button>
-        <button onClick={checkOut} disabled={status !== "checkedIn"}>
-          Check-Out
-        </button>
-        <button onClick={() => navigate("/employee-dashboard")}>Dashboard</button>
-        <button onClick={handleLogout}>Logout</button>
->>>>>>> d3d77a7581ca8f69f49219777c1d6dc1b188395e
->>>>>>> 3f014bd22e10e37ea0a98bd114216001af0af8e7
-      </div>
-
-      {message && <p>{message}</p>}
-
-      {/* Leave Request Form */}
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 3f014bd22e10e37ea0a98bd114216001af0af8e7
+      {/* Attendance Panel */}
       <div className="dashboard-card">
-        <h3 className="panel-header">Request Leave</h3>
-        {userAccess.leave_request ? (
-          <>
-            <input
-              type="date"
-              value={leaveForm.start_date}
-              onChange={(e) => setLeaveForm({ ...leaveForm, start_date: e.target.value })}
-            />
-            <input
-              type="date"
-              value={leaveForm.end_date}
-              onChange={(e) => setLeaveForm({ ...leaveForm, end_date: e.target.value })}
-              style={{ marginTop: "0.5rem" }}
-            />
-            <textarea
-              placeholder="Reason"
-              value={leaveForm.reason}
-              onChange={(e) => setLeaveForm({ ...leaveForm, reason: e.target.value })}
-              style={{ marginTop: "0.5rem" }}
-            />
-            <button onClick={submitLeaveRequest} style={{ marginTop: "0.5rem" }}>
-              Submit Request
-            </button>
-          </>
-        ) : (
-          <p style={{ color: "grey" }}>
-            Leave request feature is restricted. Please contact your administrator.
-          </p>
-        )}
-        {leaveMessage && <p style={{ color: "green" }}>{leaveMessage}</p>}
-      </div>
-<<<<<<< HEAD
-=======
-=======
-<div style={{ marginTop: "2rem", border: "1px solid #ccc", padding: "1rem", borderRadius: "8px", width: "300px" }}>
-  <h3>Request Leave</h3>
-  {userAccess.leave_request ? (
-    <>
-      <input
-        type="date"
-        value={leaveForm.start_date}
-        onChange={(e) => setLeaveForm({ ...leaveForm, start_date: e.target.value })}
-      />
-      <input
-        type="date"
-        value={leaveForm.end_date}
-        onChange={(e) => setLeaveForm({ ...leaveForm, end_date: e.target.value })}
-        style={{ marginTop: "0.5rem" }}
-      />
-      <textarea
-        placeholder="Reason"
-        value={leaveForm.reason}
-        onChange={(e) => setLeaveForm({ ...leaveForm, reason: e.target.value })}
-        style={{ marginTop: "0.5rem" }}
-      />
-      <button onClick={submitLeaveRequest} style={{ marginTop: "0.5rem" }}>
-        Submit Request
-      </button>
-    </>
-  ) : (
-    <p style={{ color: "grey" }}>
-      Leave request feature is restricted. Please contact your administrator.
-    </p>
-  )}
-  {leaveMessage && <p style={{ color: "green" }}>{leaveMessage}</p>}
-</div>
->>>>>>> d3d77a7581ca8f69f49219777c1d6dc1b188395e
->>>>>>> 3f014bd22e10e37ea0a98bd114216001af0af8e7
-
-      {/* ✅ My Leave Requests */}
-      <div
-        style={{
-          marginTop: "2rem",
-          border: "1px solid #ccc",
-          padding: "1rem",
-          borderRadius: "8px",
-          width: "300px",
-        }}
-      >
-        <h3>My Leave Requests</h3>
-        {leaveRequests.length === 0 ? (
-          <p>No leave requests yet.</p>
-        ) : (
-          <ul style={{ listStyle: "none", padding: 0 }}>
-            {leaveRequests.map((leave) => (
-              <li
-                key={leave.id}
-                style={{
-                  marginBottom: "0.5rem",
-                  border: "1px solid #eee",
-                  padding: "0.5rem",
-                  borderRadius: "6px",
-                }}
-              >
-                <strong>
-                  {new Date(leave.start_date).toLocaleDateString()} →{" "}
-                  {new Date(leave.end_date).toLocaleDateString()}
-                </strong>
-                <p>Reason: {leave.reason}</p>
-                <p>Status: <b>{leave.status}</b></p>
-              </li>
-            ))}
-          </ul>
-        )}
+        <h3 className="panel-header">Attendance</h3>
+        <p>Status: {status}</p>
+        {status === "idle" && <button onClick={checkIn}>Check In</button>}
+        {status === "checkedIn" && <button onClick={checkOut}>Check Out</button>}
+        {status === "checkedOut" && <span>Day complete</span>}
+        {message && <p>{message}</p>}
       </div>
 
-      {/* ✅ Assigned Tasks */}
-      <div
-        style={{
-          marginBottom: "0.5rem",
-          border: "1px solid #eee",
-          padding: "0.5rem",
-          borderRadius: "6px",
-        }}
-      >
-        <h3>My Tasks</h3>
-        {tasks.length > 0 ? (
-          tasks.map((task) => (
-            <div
-              key={task.id}
-              style={{
-                marginBottom: "0.5rem",
-                border: "1px solid #eee",
-                padding: "0.5rem",
-                borderRadius: "6px",
-              }}
-            >
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 3f014bd22e10e37ea0a98bd114216001af0af8e7
-              <p>
-                <strong>Title:</strong> {task.title}
-                {task.is_urgent && (
-                  <span style={{ marginLeft: '8px', color: 'white', backgroundColor: 'red', padding: '2px 6px', borderRadius: '4px', fontSize: '0.8rem' }}>
-                    URGENT
-                  </span>
-                )}
-              </p>
-<<<<<<< HEAD
-=======
-=======
-              <p><strong>Title:</strong> {task.title}</p>
->>>>>>> d3d77a7581ca8f69f49219777c1d6dc1b188395e
->>>>>>> 3f014bd22e10e37ea0a98bd114216001af0af8e7
-              <p><strong>Description:</strong> {task.description}</p>
-              <p><strong>Status:</strong> {task.status}</p>
-
-              {task.status !== "Completed" && (
-                <button
-                  onClick={() => handleMarkAsCompleted(task.id)}
-                  style={{
-                    marginTop: "0.5rem",
-                    backgroundColor: "#28a745",
-                    color: "white",
-                    padding: "0.5rem 1rem",
-                    borderRadius: "4px",
-                    border: "none",
-                    cursor: "pointer"
-                  }}
-                >
-                  Mark as Completed
-                </button>
-              )}
-            </div>
-          ))
-        ) : (
+      {/* Tasks Panel */}
+      <div className="dashboard-card">
+        <h3 className="panel-header">Tasks</h3>
+        {tasks.length === 0 ? (
           <p>No tasks assigned.</p>
-        )}
-      </div>
-
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 3f014bd22e10e37ea0a98bd114216001af0af8e7
-      {/* ✅ My Projects */}
-      <div style={{ marginTop: '2rem', border: '1px solid #ccc', padding: '1rem', borderRadius: '8px', width: '300px' }}>
-        <h3>My Projects</h3>
-        {projects.length === 0 ? (
-          <p>No projects assigned yet.</p>
         ) : (
-          <ul style={{ listStyle: 'none', padding: 0 }}>
-            {projects.map(proj => (
-              <li key={proj.id} style={{ marginBottom: '0.5rem' }}>
-                <strong>{proj.name}</strong>
-                <p>{proj.description}</p>
-                <small>Created by: {proj.created_by_name}</small>
-                <div>Status: {proj.status}</div>
-                {proj.status !== 'Completed' && (
-                  <button onClick={() => handleProjectComplete(proj.id)} style={{ marginTop: '0.5rem' }}>
-                    Mark Completed
-                  </button>
+          <ul className="list">
+            {tasks.map((task) => (
+              <li key={task.id} className="list-item">
+                {task.title} - {task.status}
+                {task.status !== "Completed" && (
+                  <button onClick={() => handleMarkAsCompleted(task.id)}>Mark as Completed</button>
                 )}
               </li>
             ))}
@@ -576,76 +298,75 @@ const handleLogout = async () => {
         )}
       </div>
 
-<<<<<<< HEAD
-=======
-=======
->>>>>>> d3d77a7581ca8f69f49219777c1d6dc1b188395e
->>>>>>> 3f014bd22e10e37ea0a98bd114216001af0af8e7
-{/* Private Chat Container */}
-<div style={{ marginTop: "2rem", border: "1px solid #ccc", padding: "1rem", width: "400px", boxSizing: "border-box" }}>
-  {userAccess.private_chat ? (
-    <>
-      {selectedReceiver ? (
-        <>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <button onClick={() => setSelectedReceiver(null)} style={{ fontSize: "0.8rem", padding: "0.3rem 0.5rem" }}>
-              Back
-            </button>
-          </div>
-          <PrivateChat
-            receiverId={selectedReceiver.id}
-            receiverName={selectedReceiver.name}
-            onClose={() => setSelectedReceiver(null)}
-          />
-        </>
-      ) : (
-        <>
-          <h3>Select an Employee to Chat With</h3>
-          {employees.length === 0 ? (
-            <p>No employees found.</p>
-          ) : (
-            <ul style={{ listStyle: "none", padding: 0 }}>
-              {employees.filter(emp => emp.id !== currentUserId).map((emp) => (
-                <li key={emp.id} style={{ marginBottom: "0.5rem" }}>
-                  <button onClick={() => setSelectedReceiver(emp)}>
-                    {emp.name}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          )}
-        </>
-      )}
-    </>
-  ) : (
-    <p style={{ color: "grey" }}>
-      Private chat feature is restricted. Please contact your administrator.
-    </p>
-  )}
-</div>
-
-<div style={{ marginTop: "2rem", width: "400px" }}>
-  {userAccess.group_chat ? (
-    assignedDept ? (
-      <div>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <h3>Department Group Chat: {assignedDept}</h3>
-          <button onClick={leaveDepartment} style={{ fontSize: "0.8rem", padding: "0.3rem 0.5rem" }}>
-            Leave Department
-          </button>
-        </div>
-        <DeptGroupChat department={assignedDept} />
+      {/* Projects Panel */}
+      <div className="dashboard-card">
+        <h3 className="panel-header">Projects</h3>
+        {projects.length === 0 ? (
+          <p>No projects assigned.</p>
+        ) : (
+          <ul className="list">
+            {projects.map((project) => (
+              <li key={project.id} className="list-item">
+                {project.name} - {project.status}
+                {project.status !== "Completed" && (
+                  <button onClick={() => handleProjectComplete(project.id)}>Mark as Completed</button>
+                )}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
-    ) : (
-      <DepartmentSelection />
-    )
-  ) : (
-    <p style={{ color: "grey" }}>
-      Group chat feature is restricted. Please contact your administrator.
-    </p>
-  )}
-</div>
 
+      {/* Leave Requests Panel */}
+      <div className="dashboard-card">
+        <h3 className="panel-header">Leave Requests</h3>
+        <form onSubmit={e => { e.preventDefault(); submitLeaveRequest(); }}>
+          <input type="date" value={leaveForm.start_date} onChange={e => setLeaveForm({ ...leaveForm, start_date: e.target.value })} required />
+          <input type="date" value={leaveForm.end_date} onChange={e => setLeaveForm({ ...leaveForm, end_date: e.target.value })} required />
+          <input type="text" value={leaveForm.reason} onChange={e => setLeaveForm({ ...leaveForm, reason: e.target.value })} placeholder="Reason" required />
+          <button type="submit">Submit</button>
+        </form>
+        {leaveMessage && <p>{leaveMessage}</p>}
+        <ul className="list">
+          {leaveRequests.map((leave) => (
+            <li key={leave.id} className="list-item">
+              {leave.start_date} to {leave.end_date} - {leave.reason} ({leave.status})
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Private Chat Panel */}
+      {userAccess.private_chat && (
+        <div className="dashboard-card">
+          <h3 className="panel-header">Private Chat</h3>
+          <ul className="list">
+            {employees.map(emp => (
+              <li key={emp.id} className="list-item">
+                {emp.name}
+                <button onClick={() => setSelectedReceiver(emp)}>Chat</button>
+              </li>
+            ))}
+          </ul>
+          {selectedReceiver && (
+            <PrivateChat receiverId={selectedReceiver.id} receiverName={selectedReceiver.name} onClose={() => setSelectedReceiver(null)} />
+          )}
+        </div>
+      )}
+
+      {/* Group Chat Panel */}
+      {userAccess.group_chat && (
+        <div className="dashboard-card">
+          <h3 className="panel-header">Department Group Chat</h3>
+          {assignedDept ? (
+            <DeptGroupChat department={assignedDept} />
+          ) : (
+            <DepartmentSelection onDepartmentSelected={() => window.location.reload()} />
+          )}
+          <button onClick={leaveDepartment}>Leave Department</button>
+        </div>
+      )}
+      <button onClick={handleLogout}>Logout</button>
     </div>
   );
 }
