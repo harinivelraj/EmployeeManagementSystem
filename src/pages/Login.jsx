@@ -24,20 +24,6 @@ export default function Login() {
       if (data.access_rights) {
         localStorage.setItem("access_rights", JSON.stringify(data.access_rights));
       }
-import axios from "../api/axios";
-import { useNavigate } from "react-router-dom";
-import logo from "../../logo.png";
-import './login.css';
-
-export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [role, setRole] = useState("Employee");
-  const navigate = useNavigate();
-
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
       const { data } = await axios.post("/auth/login", { email, password, role });
       localStorage.setItem("token", data.token);
       localStorage.setItem("role", data.role);
