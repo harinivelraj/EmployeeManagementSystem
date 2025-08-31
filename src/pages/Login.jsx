@@ -24,17 +24,6 @@ export default function Login() {
       if (data.access_rights) {
         localStorage.setItem("access_rights", JSON.stringify(data.access_rights));
       }
-      const { data } = await axios.post("/auth/login", { email, password, role });
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("role", data.role);
-      localStorage.setItem("name", data.name);
-      localStorage.setItem("id", data.id);
-      if (data.department) {
-        localStorage.setItem("department", data.department);
-      }
-      if (data.access_rights) {
-        localStorage.setItem("access_rights", JSON.stringify(data.access_rights));
-      }
       const roleRoutes = {
         "Employee": "/employee-dashboard",
         "Admin": "/admin-dashboard",
