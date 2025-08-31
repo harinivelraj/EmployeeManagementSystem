@@ -1,32 +1,15 @@
+
+
+
 import { Link, useLocation } from "react-router-dom";
-<<<<<<< HEAD
 import { useState } from "react";
-=======
-<<<<<<< HEAD
-import { useState } from "react";
-=======
->>>>>>> d3d77a7581ca8f69f49219777c1d6dc1b188395e
->>>>>>> 3f014bd22e10e37ea0a98bd114216001af0af8e7
 
 export default function Navbar() {
   const location = useLocation();
-
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 3f014bd22e10e37ea0a98bd114216001af0af8e7
-  // Hide navbar on dashboards, show only on login
-  const hideOnDashboard = location.pathname.includes("dashboard");
-  if (hideOnDashboard) return null;
-  const [showMenu, setShowMenu] = useState(false);
-<<<<<<< HEAD
-=======
-=======
   // Hide navbar on dashboards, show only on login/register
   const hideOnDashboard = location.pathname.includes("dashboard");
   if (hideOnDashboard) return null;
->>>>>>> d3d77a7581ca8f69f49219777c1d6dc1b188395e
->>>>>>> 3f014bd22e10e37ea0a98bd114216001af0af8e7
+  const [showMenu, setShowMenu] = useState(false);
 
   return (
     <nav style={{
@@ -38,10 +21,6 @@ export default function Navbar() {
       color: "white"
     }}>
       <h3>Employee Management</h3>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 3f014bd22e10e37ea0a98bd114216001af0af8e7
       <div style={{ position: "relative" }}>
         <button
           onClick={() => setShowMenu(prev => !prev)}
@@ -77,14 +56,10 @@ export default function Navbar() {
             </Link>
           </div>
         )}
-<<<<<<< HEAD
-=======
-=======
+      </div>
       <div style={{ display: "flex", gap: "20px" }}>
         <Link to="/login" style={{ color: "white", textDecoration: "none" }}>Login</Link>
         <Link to="/register" style={{ color: "white", textDecoration: "none" }}>Register</Link>
->>>>>>> d3d77a7581ca8f69f49219777c1d6dc1b188395e
->>>>>>> 3f014bd22e10e37ea0a98bd114216001af0af8e7
       </div>
     </nav>
   );
