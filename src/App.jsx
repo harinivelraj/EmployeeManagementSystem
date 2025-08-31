@@ -20,7 +20,10 @@ import Payments from './pages/superadmin/Payments';
 import Attendance from './pages/superadmin/Attendance';
 import LeaveRequests from './pages/superadmin/LeaveRequests';
 import Chat from './pages/superadmin/Chat';
+
 import Reports from './pages/superadmin/Reports';
+import Tasks from './pages/superadmin/Tasks';
+import GroupChat from './pages/superadmin/GroupChat';
 
 function App() {
   return (
