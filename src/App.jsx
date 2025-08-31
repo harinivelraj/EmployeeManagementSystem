@@ -41,7 +41,6 @@ import Attendance from './pages/superadmin/Attendance';
 import LeaveRequests from './pages/superadmin/LeaveRequests';
 import Chat from './pages/superadmin/Chat';
 import Reports from './pages/superadmin/Reports';
-import GroupChat from './pages/superadmin/GroupChat';
 
 function App() {
   return (
