@@ -178,14 +178,14 @@ export default function ClientDashboard() {
     setTimeout(() => setMessage(''), 3000);
   };
 
+
   useEffect(() => {
-  // Load initial notifications for home view
-  fetchNotifications();
-  fetchEmployees();
+    // Load initial notifications for home view
+    fetchNotifications();
+    fetchEmployees();
     fetchPayments();
     fetchTasks();
     fetchProjects();
-  }, []);
 
     // Setup real-time notifications
     const socket = io("http://localhost:5000");
